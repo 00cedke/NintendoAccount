@@ -1,7 +1,10 @@
-from flask import Blueprint, request, render_template, make_response
+from flask import Flask, Response
+import xml.etree.ElementTree as ET
 
-devices = Blueprint("devices", "devices")
+app = Flask(__name__)
 
-@devices.route("/@current/status", methods=['GET'])
+@app.route('/@current/status', methods=['GET'])
 def status():
-    pass
+    device = ET.Element('device')
+    device_xml = ET.tostring(device, encoding='utf8', method='xml')
+    return Response(device_xml, mimetype='application/xml')
