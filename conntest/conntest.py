@@ -2,10 +2,13 @@ from flask import Blueprint, Response
 
 print("CONNTEST Started.")
 
-conntest_bp = Blueprint('conntest', __name__, subdomain='conntest')
+conntest = Blueprint('conntest', __name__, subdomain='conntest')
 
-@conntest_bp.route('/', methods=['GET'])
-def conntest():
+
+## -- CONNTEST ROUTES -- ##
+
+@conntest.route('/', methods=['GET'])
+def index():
     response = Response()
     response.headers['Content-Type'] = 'text/html'
     response.headers['X-Organization'] = 'Nintendo'
